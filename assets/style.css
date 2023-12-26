@@ -1,0 +1,24 @@
+#table tr,td{
+width: 150px;*/
+text-align: left;
+
+}
+
+#table th{
+	background-color: #000;
+	color: #fff;
+}
+
+#sd{
+
+	text-align: center;
+}
+
+.teste{
+	background-color: #ccc;
+}
+
+.loader{
+	display: none;
+	
+}

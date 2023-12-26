@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relAtendimentoFicha" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a4c57434-91f6-4f44-a55d-8df4c8902933">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="rel" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="inativo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+'Código' as tCodPre,
+'Prefeitura' as tNomPre,
+'Fone 1' as tFone1Pre,
+'Fone 2' as tFone2Pre,
+a.cmpCodPre,
+a.cmpNomPre,
+a.cmpFone1Pre,
+a.cmpFone2Pre,
+a.inativo,
+if(a.inativo=1,"INATIVOS","ATIVOS") as ina,
+'Total Geral:' as ttotCodPre,
+c.totCodPre
+FROM
+prefeitura a
+left join (select inativo, count(cmpCodPre) as totCodPre from prefeitura where inativo = $P{inativo} group by inativo) c on a.inativo=c.inativo
+where a.inativo = $P{inativo}
+ORDER BY
+     a.cmpNomPre ASC]]>
+	</queryString>
+	<field name="tCodPre" class="java.lang.String"/>
+	<field name="tNomPre" class="java.lang.String"/>
+	<field name="tFone1Pre" class="java.lang.String"/>
+	<field name="tFone2Pre" class="java.lang.String"/>
+	<field name="cmpCodPre" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cmpNomPre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cmpFone1Pre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cmpFone2Pre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="inativo" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ina" class="java.lang.String"/>
+	<field name="ttotCodPre" class="java.lang.String"/>
+	<field name="totCodPre" class="java.lang.Long"/>
+	<group name="inat">
+		<groupExpression><![CDATA[$F{inativo}]]></groupExpression>
+		<groupHeader>
+			<band height="39">
+				<line>
+					<reportElement x="1" y="1" width="553" height="1" uuid="daa60aa4-baef-4f3e-a24d-a91b8e58022f"/>
+				</line>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="45" y="23" width="270" height="15" uuid="59056665-3d7c-4868-b76f-d41ab8d4ba3a"/>
+					<textElement>
+						<font fontName="Times New Roman" size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tNomPre}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="463" y="23" width="90" height="15" uuid="70075978-a68a-431e-976e-8214319faa87"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tFone2Pre}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="318" y="23" width="49" height="15" uuid="cdb44a16-1769-43ac-a626-d21879193f05"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tCodPre}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="369" y="23" width="90" height="15" uuid="bac13a30-76fb-4543-a06e-39be10eee791"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tFone1Pre}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Opaque" x="507" y="3" width="47" height="16" backcolor="#CCCCCC" uuid="14fadb42-e2f1-414d-bb2d-0354ba45a621"/>
+					<textElement textAlignment="Right">
+						<font fontName="Times New Roman" size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[number_format($F{totCodPre}, 0, ',', ' ')]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Opaque" x="389" y="3" width="118" height="16" backcolor="#CCCCCC" uuid="948e1a89-5e67-4f22-a430-1c2c06f8fe5d"/>
+					<textElement textAlignment="Right">
+						<font fontName="Times New Roman" size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ttotCodPre}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="1" y="38" width="553" height="1" uuid="b6b7fccd-f8bb-4e10-b2ce-7171b1f90385"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="1">
+				<line>
+					<reportElement x="2" y="0" width="553" height="1" uuid="2cdf9d30-dbea-4482-80d1-848e850315ca"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="84" y="4" width="456" height="33" uuid="81b27699-b894-4e59-8e19-2688c294e0aa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="20" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Relação de Prefeituras (R)]]></text>
+			</staticText>
+			<image>
+				<reportElement x="5" y="4" width="72" height="32" uuid="2bc705f0-3aa8-422c-bd4e-b36e32d4e644"/>
+				<imageExpression><![CDATA["imgrel.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="45" y="3" width="270" height="15" uuid="1b8dc936-4fa0-4ead-9562-bbbbb785363d"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cmpNomPre}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="369" y="3" width="90" height="15" uuid="58678a39-12db-4c74-b772-31f8a17133d5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cmpFone1Pre}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="463" y="3" width="90" height="15" uuid="43c64dd5-5c2a-4783-a382-9bff2d6d680b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cmpFone2Pre}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="318" y="3" width="49" height="15" uuid="2c1db1a9-3b4d-4adf-9e0e-bd1c2959b9a5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cmpCodPre}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="445" y="3" width="100" height="20" uuid="e12b6feb-fc02-48d0-956c-bcf7b665554a"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="9" y="3" width="429" height="19" uuid="e4eba4c3-71cc-4536-90d8-41db623eb96c"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="1" width="553" height="1" uuid="d99f401f-96bc-48b9-b711-d30711cf79c9"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

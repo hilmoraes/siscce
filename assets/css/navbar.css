@@ -1,0 +1,115 @@
+.navbar-white {
+    background: -webkit-gradient(linear, left top, right top, from(#3c8dbc), to(#99ccff)) no-repeat;
+        background: -moz-linear-gradient(left, #3c8dbc, #99ccff);
+        filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr='#3c8dbc', EndColorStr='#99ccff');
+    font-size: 14pt;
+
+}
+
+.btn-secondary{
+	/*background-color: #6610f2;*/
+}
+
+
+.logo {
+	background-color: #f9fafc !important;
+}
+
+.lnk_sistema{
+
+	margin-top: 14px; 
+	color:#fff !important;
+}
+
+.lnk_sistema a{
+	color:#fff !important;
+}
+
+.skin-blue-light .main-header .navbar .sidebar-toggle:hover {
+    background-color: #adc987 !important;
+}
+
+.aln-btn{
+	align-items: right !important;
+	float: right;
+	/*padding: 10px;*/
+}
+
+.btn-sistem{
+
+	border-color:#17a2b8;
+	border-radius: 50%;
+	color: #17a2b8;
+
+}
+.btn-sistem:hover{
+	
+	background-color: #17a2b8;
+	color:#fff;
+
+}
+
+.btn-sistem-green{
+
+	border-color:#28a745;
+	color: #28a745;
+
+}
+
+.btn-sistem-green:hover{
+	
+	background-color: #28a745;
+	color:#fff;
+
+}
+
+.btn-sistem-red{
+
+	border-color:#dc3545;
+	color: #dc3545;
+
+}
+
+.btn-sistem-red:hover{
+	
+	background-color: #dc3545;
+	color:#fff;
+
+}
+
+.title-sistem{
+	color:#3c8dbc;
+}
+
+.painel-sistem{
+	background-color: #17a2b8;
+	color:#fff;
+}
+
+.nav-tabs-custom{
+	box-shadow: 0 0 0 0 !important;
+}
+
+.nav-tabs-custom > .nav-tabs {
+    margin: 0;
+    border-bottom-color: #3c8dbc !important;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+}
+
+.nav-tabs {
+    border-bottom: 2px solid !important;
+}
+
+.box-header {
+    color: #fff !important;
+    background-color: #3c8dbc !important;
+}
+
+.navbar-nav > .user-menu .user-image {
+    width: 40px !important;
+}
+
+.navbar-nav > .user-menu > .dropdown-menu > li.user-header {
+    height: auto !important;
+}

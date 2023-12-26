@@ -1,0 +1,112 @@
+html, body {height:100%;}
+
+.table-striped > tbody > tr{
+    background-color: #9FA8DA;
+    color: #263238;
+}
+
+.table > tbody > tr.danger > td{
+    background-color: #EF5350;
+}
+
+.glyphicon{
+    color: #000;
+    font-size: 16pt;
+}
+.glyphicon:hover{
+    color: #fff;
+}
+thead{
+    background-color: #219e95;
+    color: #fff;
+}
+.table-bordered{
+    color: #263238;
+}
+.back, .next{
+    color: #9FA8DA;
+    font-size: 2em;
+    cursor: pointer;
+    margin-right: 2rem;
+}
+.next:last-child{
+    margin-right: 0;
+}
+.back:hover, .next:hover{
+    color: #263238;
+}
+.btn {
+    margin-right: 1rem;
+}
+.search{
+    font-size: 20px;
+    color: #fff;
+}
+.imgLogo{
+    padding-bottom: 1rem;
+}
+.btn{
+    background-color: #536DFE;
+}
+h1{
+    text-align: center;
+    color: #ffffff;
+    background: #993333;
+    background-color:#219e95;
+    background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+}
+
+h4{
+    text-align: center;
+    color: #ffffff;
+    background: #009933;
+    background-color:#219e95;
+    background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+}
+
+.posidireita p{
+    float: right;
+    padding-top: 0%;
+    color: #219e95;
+}
+
+.rodape p{
+    position:absolute;
+    width: 100%;
+    bottom: 0;
+    margin-top: 4rem;
+    text-align: center;
+    border-top: 1px solid black;
+    color:#ffffff;
+    background: #993333;
+    background-color:#219e95;
+    background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+}
+
+@media (min-width: 300px) {
+    .rodape {font-size: 8pt;}
+    .logocenter{margin-top: 0rem;}
+}
+
+@media (min-width: 400px) {
+    .rodape {font-size: 14pt; position:absolute;}
+}
+
+
+.labels label {
+    font-size: 10pt;
+    color: #000;
+}
+
+
+.navbar-white {
+    background: -webkit-gradient(linear, left top, right top, from(#c2ce81), to(#40b0a8)) no-repeat;
+        background: -moz-linear-gradient(left, #c2ce81, #40b0a8);
+        filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr='#c2ce81', EndColorStr='#40b0a8');
+    font-size: 14pt;
+}
+
+
+.card-primary:not(.card-outline) > .card-header {
+    background-color: #40b0a8;
+}
