@@ -27,7 +27,7 @@
             <div class="info-box">
               <span class="info-box-icon bg-info"><img src="dist/img/parceiro.png" class="img-abm" ></span>
               <div class="info-box-content">
-                <a href="<?=BASE_URL;?>fornecedores/lista"><span class="info-box-text">Parceiros</span></a>
+                <a href="<?=BASE_URL;?>parceiros/lista"><span class="info-box-text">Parceiros</span></a>
               </div>
               <!-- /.info-box-content -->
             </div>
