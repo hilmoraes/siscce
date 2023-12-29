@@ -110,20 +110,27 @@ class Parceiros extends model{
 
 	public function validaParceiroDel($id){
 		$valida = 0;
-		$sql = $this->db->prepare("SELECT count(cmpCodPar) as tot from parceirocontatos where cmpCodPar = :cmpCodPar");
-		$sql->bindValue(":cmpCodPar", $id);
-		$sql->execute();
-		$valida = $sql->fetch();
-
+		$valida1 = 0;
 		$valida2 = 0;
-		$sql2 = $this->db->prepare("SELECT count(cmpCodPar) as tot from convenio where cmpCodPar = :cmpCodPar");
+		$valida3 = 0;
+		$sql1 = $this->db->prepare("SELECT count(cmpCodPar) as tot1 from parceirocontatos where cmpCodPar = :cmpCodPar");
+		$sql1->bindValue(":cmpCodPar", $id);
+		$sql1->execute();
+		$valida1 = $sql1->fetch();
+
+		$sql2 = $this->db->prepare("SELECT count(cmpCodPar) as tot2 from parceirocontas where cmpCodPar = :cmpCodPar");
 		$sql2->bindValue(":cmpCodPar", $id);
 		$sql2->execute();
 		$valida2 = $sql2->fetch();
 
-		$vv2 = $valida['tot'] + $valida2['tot'];
+		$sql3 = $this->db->prepare("SELECT count(cmpCodPar) as tot2 from convenio where cmpCodPar = :cmpCodPar");
+		$sql3->bindValue(":cmpCodPar", $id);
+		$sql3->execute();
+		$valida3 = $sql3->fetch();
 
-		if($vv2 == '00'){
+		$valida = $valida1['tot1'] . $valida2['tot2'] . $valida3['tot3'];
+
+		if($valida  == '000'){
 			return true;
 		}else{
 			return false;

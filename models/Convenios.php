@@ -1,11 +1,11 @@
 <?php
-class Contratos extends Model{
+class Convenios extends Model{
 
 	public function getList(){
 
 		$array = array();
 		$sql = $this->db->query('SET NAMES utf8');
-		$sql = $this->db->query("SELECT a.*,replace(a.cmpContrato,'/','_') as contra, (case when DATEDIFF(a.cmpDataLanc,'0001-01-01')=0 then '0' else '1' end) as DataLanc, b.cmpNomePro, c.cmpNomFor FROM contrato a left join produto b on a.cmpCodPro = b.cmpCodPro left join fornecedor c on a.cmpCodFor = c.cmpCodFor where cmpTipo = 'COMPRA' order by a.cmpCodLanc DESC");
+		$sql = $this->db->query("SELECT a.*, (case when DATEDIFF(a.cmpDtVigenciaConv,'0001-01-01')=0 then '0' else '1' end) as DtVigenciaConv, (case when DATEDIFF(a.cmpDtFimVigenciaConv,'0001-01-01')=0 then 'EXECUÇÃO' else 'ENCERRADO' end) as situacao, b.cmpNomeGes, c.cmpNomeFis, d.cmpNomPre FROM convenio a left join gestor b on a.cmpCodGes = b.cmpCodGes left join fiscal c on a.cmpCodFis = c.cmpCodFis left join prefeitura d on a.cmpCodPre = d.cmpCodPre order by a.cmpNumConv DESC");
 
 		if($sql->rowCount() > 0){
 			$array = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -15,143 +15,116 @@ class Contratos extends Model{
 	}
 
 
-
-	// public function add($Tipo, $DataLanc, $DtIdent, $Ident, $CodFor, $CodCli, $CodPro, $Embalagem, $Embarque, $QtdSaca, $QtdKgSaca, $QtdTon, $QtdKg, $VrKg, $Preco, $DescCarreg, $TpFrete, $Qtde, $CondPgto, $Carretas, $Funrural, $LocRetirada, $Prazo, $DataVF, $V, $VrV, $Contratante, $PorTon, $usuario, $CodEmp, $Extenso, $Extenso1){
-
-	// 	$sql = $this->db->query('SET NAMES utf8');
-	// 	$sql= $this->db->prepare("INSERT INTO contrato (cmpTipo, cmpDataLanc, cmpDtIdent, cmpIdent, cmpCodFor, cmpCodCli, cmpCodPro, cmpEmbalagem, cmpEmbarque, cmpQtdSaca, cmpQtdKgSaca, cmpQtdTon, cmpQtdKg, cmpVrKg, cmpPreco, cmpDescCarreg, cmpTpFrete, cmpQtde, cmpCondPgto, cmpCarretas, cmpFunrural, cmpLocRetirada, cmpPrazo, cmpDataVF, cmpV, cmpVrV, cmpContratante, cmpPorTon, cmpUsuario, cmpCodEmp, cmpExtenso, cmpExtenso1) VALUES(:Tipo, :DataLanc, :DtIdent, :Ident, :CodFor, :CodCli, :CodPro, :Embalagem, :Embarque, :QtdSaca, :QtdKgSaca, :QtdTon, :QtdKg, :VrKg, :Preco, :DescCarreg, :TpFrete, :Qtde, :CondPgto, :Carretas, :Funrural, :LocRetirada, :Prazo, :DataVF, :V, :VrV, :Contratante, :PorTon, :usuario, :CodEmp, :Extenso, :Extenso1)");
-
-	public function add($Tipo, $DataLanc, $DtIdent, $Ident, $CodFor, $CodCli, $CodPro, $Embalagem, $Embarque, $QtdSaca, $QtdKgSaca, $QtdTon, $QtdKg, $VrKg, $Preco, $DescCarreg, $TpFrete, $Qtde, $CondPgto, $Carretas, $Funrural, $LocRetirada, $Prazo, $DataVF, $V, $VrV, $Contratante, $PorTon, $usuario, $CodEmp, $Extenso, $Extenso1){
-		
-		$valida = 0;
-		$query1 = $this->db->prepare("SELECT cmpSeqContCompra as SeqContCompra FROM seqcontrato");
-		$query1->execute();
-		$valida = $query1->fetch();
-		$contrat = $valida['SeqContCompra'];
-		$ano = date('y');
-		$ContratoCompra = "C-".$contrat."/".$ano;
+	public function add($CodPre, $EparceriaConv, $NumConv, $OrgaoConv, $ObjetoConv, $DtVigenciaConv, $DtFimVigenciaConv, $CodGes, $CodFis, $VrRepasseConv, $VrCpConv, $AditivoConv, $VrRepasseAConv, $VrCpAConv, $VrTotalConv, $ObsConv, $usuario, $CodEmp){
 
 		$sql = $this->db->query('SET NAMES utf8');
-		$sql= $this->db->prepare("INSERT INTO contrato (cmpContrato, cmpTipo, cmpDataLanc, cmpDtIdent, cmpIdent, cmpCodFor, cmpCodCli, cmpCodPro, cmpEmbalagem, cmpEmbarque, cmpQtdSaca, cmpQtdKgSaca, cmpQtdTon, cmpQtdKg, cmpVrKg, cmpPreco, cmpDescCarreg, cmpTpFrete, cmpQtde, cmpCondPgto, cmpCarretas, cmpFunRural, cmpLocRetirada, cmpPrazo, cmpDataVF, cmpV, cmpVrV, cmpContratante, cmpPorTon, cmpUsuario, cmpCodEmp, cmpExtenso, cmpExtenso1) VALUES(:ContratoCompra, :Tipo, :DataLanc, :DtIdent, :Ident, :CodFor, :CodCli, :CodPro, :Embalagem, :Embarque, :QtdSaca, :QtdKgSaca, :QtdTon, :QtdKg, :VrKg, :Preco, :DescCarreg, :TpFrete, :Qtde, :CondPgto, :Carretas, :Funrural, :LocRetirada, :Prazo, :DataVF, :V, :VrV, :Contratante, :PorTon, :usuario, :CodEmp, :Extenso, :Extenso1)");
+		$sql= $this->db->prepare("INSERT INTO convenio (cmpCodPre, cmpEparceriaConv, cmpNumConv, cmpOrgaoConv, cmpObjetoConv, cmpDtVigenciaConv, cmpDtFimVigenciaConv, cmpCodGes, cmpCodFis, cmpVrRepasseConv, cmpVrCpConv, cmpAditivoConv, cmpVrRepasseAConv, cmpVrCpAConv, cmpVrTotalConv, cmpObsConv, usuario, cmpCodEmp) VALUES(:CodPre, :EparceriaConv, :NumConv, :OrgaoConv, :ObjetoConv, :DtVigenciaConv, :DtFimVigenciaConv, :CodGes, :CodFis, :VrRepasseConv, :VrCpConv, :AditivoConv, :VrRepasseAConv, :VrCpAConv, :VrTotalConv, :ObsConv, :usuario, :CodEmp)");
 
-		$sql->bindValue(":ContratoCompra",$ContratoCompra);
-		$sql->bindValue(":Tipo",$Tipo);
-		if (empty($DataLanc)) {
-			$DataLanc = '0001-01-01';
+		if (empty($CodPre)) {
+			$CodPre = 0;
 		}
-		$sql->bindValue(":DataLanc",$DataLanc);
-		if (empty($DtIdent)) {
-			$DtIdent = '0001-01-01';
+		$sql->bindValue(":CodPre",$CodPre);
+		$sql->bindValue(":EparceriaConv",$EparceriaConv);
+		$sql->bindValue(":NumConv",$NumConv);
+		$sql->bindValue(":OrgaoConv",$OrgaoConv);
+		$sql->bindValue(":ObjetoConv",$ObjetoConv);
+		if (empty($DtVigenciaConv)) {
+			$DtVigenciaConv = '0001-01-01';
 		}
-		$sql->bindValue(":DtIdent",$DtIdent);
-		$sql->bindValue(":Ident",$Ident);
-		if (empty($CodFor)) {
-			$CodFor = 0;
+		$sql->bindValue(":DtVigenciaConv",$DtVigenciaConv);
+		if (empty($DtFimVigenciaConv)) {
+			$DtFimVigenciaConv = '0001-01-01';
 		}
-		$sql->bindValue(":CodFor",$CodFor);
-		if (empty($CodCli)) {
-			$CodCli = 0;
+		$sql->bindValue(":DtFimVigenciaConv",$DtFimVigenciaConv);
+		if (empty($CodGes)) {
+			$CodGes = 0;
 		}
-		$sql->bindValue(":CodCli",$CodCli);
-		if (empty($CodPro)) {
-			$CodPro = 0;
+		$sql->bindValue(":CodGes",$CodGes);
+		if (empty($CodFis)) {
+			$CodFis = 0;
 		}
-		$sql->bindValue(":CodPro",$CodPro);
-		$sql->bindValue(":Embalagem",$Embalagem);
-		$sql->bindValue(":Embarque",$Embarque);
-		if (empty($QtdSaca)) {
-			$QtdSaca = 0;
+		$sql->bindValue(":CodFis",$CodFis);
+		if (empty($VrRepasseConv)) {
+			$VrRepasseConv = 0;
 		}
-		$sql->bindValue(":QtdSaca",$QtdSaca);
-		if (empty($QtdKgSaca)) {
-			$QtdKgSaca = 0;
+		$sql->bindValue(":VrRepasseConv",$VrRepasseConv);
+		if (empty($VrCpConv)) {
+			$VrCpConv = 0;
 		}
-		$sql->bindValue(":QtdKgSaca",$QtdKgSaca);
-		if (empty($QtdTon)) {
-			$QtdTon = 0;
+		$sql->bindValue(":VrCpConv",$VrCpConv);
+		$sql->bindValue(":AditivoConv",$AditivoConv);
+		if (empty($VrRepasseAConv)) {
+			$VrRepasseAConv = 0;
 		}
-		$sql->bindValue(":QtdTon",$QtdTon);
-		if (empty($QtdKg)) {
-			$QtdKg = 0;
+		$sql->bindValue(":VrRepasseAConv",$VrRepasseAConv);
+		if (empty($VrCpAConv)) {
+			$VrCpAConv = 0;
 		}
-		$sql->bindValue(":QtdKg",$QtdKg);
-		if (empty($VrKg)) {
-			$VrKg = 0;
+		$sql->bindValue(":VrCpAConv",$VrCpAConv);
+		if (empty($VrTotalConv)) {
+			$VrTotalConv = 0;
 		}
-		$sql->bindValue(":VrKg",$VrKg);
-		if (empty($Preco)) {
-			$Preco = 0;
-		}
-		$sql->bindValue(":Preco",$Preco);
-		$sql->bindValue(":DescCarreg",$DescCarreg);
-		$sql->bindValue(":TpFrete",$TpFrete);
-		$sql->bindValue(":Qtde",$Qtde);
-		$sql->bindValue(":CondPgto",$CondPgto);
-		$sql->bindValue(":Carretas",$Carretas);
-		$sql->bindValue(":Funrural",$Funrural);
-		$sql->bindValue(":LocRetirada",$LocRetirada);
-		$sql->bindValue(":Prazo",$Prazo);
-		if (empty($DataVF)) {
-			$DataVF = '0001-01-01';
-		}
-		$sql->bindValue(":DataVF",$DataVF);
-		$sql->bindValue(":V",$V);
-		$sql->bindValue(":VrV",$VrV);
-		if (empty($Contratante)) {
-			$Contratante = 0;
-		}
-		$sql->bindValue(":Contratante",$Contratante);
-		if (empty($PorTon)) {
-			$PorTon = 0;
-		}
-		$sql->bindValue(":PorTon",$PorTon);
-		// if (empty($DataCancel)) {
-		// 	$DataCancel = '0001-01-01';
-		// }
-		// $sql->bindValue(":DataCancel",$DataCancel);
+		$sql->bindValue(":VrTotalConv",$VrTotalConv);
+		$sql->bindValue(":ObsConv",$ObsConv);
 		$sql->bindValue(":usuario",$usuario);
 		if (empty($CodEmp)) {
 			$CodEmp = 0;
 		}
 		$sql->bindValue(":CodEmp",$CodEmp);
-		$sql->bindValue(":Extenso",$Extenso);
-		$sql->bindValue(":Extenso1",$Extenso1);
 		
 		$sql->execute();
-
-		$proximo = $contrat + 1;
-		$query2 = $this->db->prepare("UPDATE seqcontrato set cmpSeqContCompra = $proximo");
-		$query2->execute();
-		
-		// $id_cod = $this->db->lastInsertId();
-
-		// print_r($id_cmpAte);
-		// exit();
 
 		return true;
-
 	}
 
 
-	public function getProdutos(){
-
+	public function getGestores(){
 		$array = array();
-		$sql = $this->db->query("SELECT cmpCodPro, cmpNomPro FROM produto ORDER BY cmpNomPro");
-		
+		$sql = $this->db->query("SELECT cmpCodGes, cmpNomeGes FROM gestor ORDER BY cmpNomeGes");
 		if($sql->rowCount() > 0){
 			$array = $sql->fetchAll(PDO::FETCH_ASSOC);
 		}
-
 		return $array;
-
 	}
 
 
-	public function getProdutoscon($id){
+	public function getFiscais(){
+		$array = array();
+		$sql = $this->db->query("SELECT cmpCodFis, cmpNomeFis FROM fiscal ORDER BY cmpNomeFis");
+		if($sql->rowCount() > 0){
+			$array = $sql->fetchAll(PDO::FETCH_ASSOC);
+		}
+		return $array;
+	}
+
+
+	public function getPrefeituras(){
+		$array = array();
+		$sql = $this->db->query("SELECT cmpCodPre, cmpNomePre FROM prefeitura ORDER BY cmpNomPre");
+		if($sql->rowCount() > 0){
+			$array = $sql->fetchAll(PDO::FETCH_ASSOC);
+		}
+		return $array;
+	}
+
+
+	public function getGestoresconv($id){
 		$array = array();
 		$sql = $this->db->query('SET NAMES utf8');
-		$sql = $this->db->prepare("SELECT a.cmpCodPro, b.cmpNomPro FROM contrato a left join produto b on a.cmpCodPro = b.cmpCodPro where cmpCodLanc = :cmpCodLanc");
-		$sql->bindValue(":cmpCodLanc", $id);
+		$sql = $this->db->prepare("SELECT a.cmpCodGes, b.cmpNomeGes FROM convenio a left join gestor b on a.cmpCodGes = b.cmpCodGes where cmpCodConv = :cmpCodConv");
+		$sql->bindValue(":cmpCodConv", $id);
+		$sql->execute();
+		if($sql->rowCount() > 0){
+			$array = $sql->fetchAll(PDO::FETCH_ASSOC);
+		}
+		return $array;
+	}
+
+	public function getPrefeiturasconv($id){
+		$array = array();
+		$sql = $this->db->query('SET NAMES utf8');
+		$sql = $this->db->prepare("SELECT a.cmpCodPre, b.cmpNomePre FROM convenio a left join prefeitura b on a.cmpCodPre = b.cmpCodPre where cmpCodConv = :cmpCodConv");
+		$sql->bindValue(":cmpCodConv", $id);
 		$sql->execute();
 		if($sql->rowCount() > 0){
 			$array = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -160,11 +133,11 @@ class Contratos extends Model{
 	}
 
 
-	public function getFornecedorescon($id){
+	public function getFiscaisconv($id){
 		$array = array();
 		$sql = $this->db->query('SET NAMES utf8');
-		$sql = $this->db->prepare("SELECT a.cmpCodFor, b.cmpNomFor FROM contrato a left join fornecedor b on a.cmpCodFor = b.cmpCodFor where cmpCodLanc = :cmpCodLanc");
-		$sql->bindValue(":cmpCodLanc", $id);
+		$sql = $this->db->prepare("SELECT a.cmpCodFis, b.cmpNomeFis FROM convenio a left join fiscal b on a.cmpCodFis = b.cmpCodFis where cmpCodConv = :cmpCodConv");
+		$sql->bindValue(":cmpCodConv", $id);
 		$sql->execute();
 		if($sql->rowCount() > 0){
 			$array = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -173,81 +146,58 @@ class Contratos extends Model{
 	}
 
 
-	public function update($id, $Contrato, $DataLanc, $DtIdent, $Ident, $CodFor, $CodCli, $CodPro, $Embalagem, $Embarque, $QtdSaca, $QtdKgSaca, $QtdTon, $QtdKg, $VrKg, $Preco, $DescCarreg, $TpFrete, $Qtde, $CondPgto, $Carretas, $Funrural, $LocRetirada, $Prazo, $DataVF, $V, $VrV, $Contratante, $PorTon, $usuario, $CodEmp, $Extenso, $Extenso1, $DataCancel){
+	public function update($id, $CodPre, $EparceriaConv, $NumConv, $OrgaoConv, $ObjetoConv, $DtVigenciaConv, $DtFimVigenciaConv, $CodGes, $CodFis, $VrRepasseConv, $VrCpConv, $AditivoConv, $VrRepasseAConv, $VrCpAConv, $VrTotalConv, $ObsConv, $usuario, $CodEmp, $DataCancel){
 
 		$sql = $this->db->query('SET NAMES utf8');
-		$sql = $this->db->prepare(" UPDATE contrato set cmpDataLanc = :DataLanc, cmpDtIdent =:DtIdent, cmpIdent = :Ident, cmpCodFor =:CodFor, cmpCodCli =:CodCli,  cmpCodPro =:CodPro, cmpEmbalagem = :Embalagem, cmpEmbarque = :Embarque, cmpQtdSaca = :QtdSaca, cmpQtdKgSaca = :QtdKgSaca, cmpQtdTon = :QtdTon, cmpQtdKg = :QtdKg, cmpVrKg = :VrKg, cmpPreco = :Preco, cmpDescCarreg = :DescCarreg, cmpTpFrete = :TpFrete, cmpQtde = :Qtde, cmpCondPgto = :CondPgto, cmpCarretas = :Carretas, cmpFunRural = :Funrural, cmpLocRetirada = :LocRetirada, cmpPrazo = :Prazo, cmpDataVF = :DataVF, cmpV = :V, cmpVrV = :VrV, cmpContratante = :Contratante,  cmpPorTon = :PorTon, cmpUsuario = :usuario, cmpCodEmp = :CodEmp, cmpExtenso = :Extenso, cmpExtenso1 = :Extenso1, cmpDataCancel = :DataCancel where cmpCodLanc = :cmpCodLanc");
+		$sql = $this->db->prepare(" UPDATE convenio set cmpCodPre = :CodPre, cmpEparceriaConv = :EparceriaConv, cmpNumConv =:NumConv, cmpOrgaoConv = :OrgaoConv, cmpObjetoConv =:ObjetoConv, cmpDtVigenciaConv =:DtVigenciaConv, cmpDtFimVigenciaConv =:DtFimVigenciaConv,  cmpCodGes =:CodGes, cmpCodFis = :CodFis, cmpVrRepasseConv = :VrRepasseConv, cmpVrCpConv = :VrCpConv, cmpAditivoConv = :AditivoConv, cmpVrRepasseAConv = :VrRepasseAConv, cmpVrCpAConv = :VrCpAConv, cmpVrTotalConv = :VrTotalConv, cmpObsConv = :ObsConv, usuario = :usuario, cmpCodEmp = :CodEmp, cmpDataCancel = :DataCancel where cmpCodConv = :cmpCodConv");
 
-		$sql->bindValue(":cmpCodLanc", $id);
-		if (empty($DataLanc)) {
-			$DataLanc = '0001-01-01';
+		$sql->bindValue(":cmpCodConv", $id);
+		if (empty($CodPre)) {
+			$CodPre = 0;
 		}
-		$sql->bindValue(":DataLanc",$DataLanc);
-		if (empty($DtIdent)) {
-			$DtIdent = '0001-01-01';
+		$sql->bindValue(":CodPre",$CodPre);
+		$sql->bindValue(":EparceriaConv",$EparceriaConv);
+		$sql->bindValue(":NumConv",$NumConv);
+		$sql->bindValue(":OrgaoConv",$OrgaoConv);
+		$sql->bindValue(":ObjetoConv",$ObjetoConv);
+		if (empty($DtVigenciaConv)) {
+			$DtVigenciaConv = '0001-01-01';
 		}
-		$sql->bindValue(":DtIdent",$DtIdent);
-		$sql->bindValue(":Ident",$Ident);
-		if (empty($CodFor)) {
-			$CodFor = 0;
+		$sql->bindValue(":DtVigenciaConv",$DtVigenciaConv);
+		if (empty($DtFimVigenciaConv)) {
+			$DtFimVigenciaConv = '0001-01-01';
 		}
-		$sql->bindValue(":CodFor",$CodFor);
-		if (empty($CodCli)) {
-			$CodCli = 0;
+		$sql->bindValue(":DtFimVigenciaConv",$DtFimVigenciaConv);
+		if (empty($CodGes)) {
+			$CodGes = 0;
 		}
-		$sql->bindValue(":CodCli",$CodCli);
-		if (empty($CodPro)) {
-			$CodPro = 0;
+		$sql->bindValue(":CodGes",$CodGes);
+		if (empty($CodFis)) {
+			$CodFis = 0;
 		}
-		$sql->bindValue(":CodPro",$CodPro);
-		$sql->bindValue(":Embalagem",$Embalagem);
-		$sql->bindValue(":Embarque",$Embarque);
-		if (empty($QtdSaca)) {
-			$QtdSaca = 0;
+		$sql->bindValue(":CodFis",$CodFis);
+		if (empty($VrRepasseConv)) {
+			$VrRepasseConv = 0;
 		}
-		$sql->bindValue(":QtdSaca",$QtdSaca);
-		if (empty($QtdKgSaca)) {
-			$QtdKgSaca = 0;
+		$sql->bindValue(":VrRepasseConv",$VrRepasseConv);
+		if (empty($VrCpConv)) {
+			$VrCpConv = 0;
 		}
-		$sql->bindValue(":QtdKgSaca",$QtdKgSaca);
-		if (empty($QtdTon)) {
-			$QtdTon = 0;
+		$sql->bindValue(":VrCpConv",$VrCpConv);
+		$sql->bindValue(":AditivoConv",$AditivoConv);
+		if (empty($VrRepasseAConv)) {
+			$VrRepasseAConv = 0;
 		}
-		$sql->bindValue(":QtdTon",$QtdTon);
-		if (empty($QtdKg)) {
-			$QtdKg = 0;
+		$sql->bindValue(":VrRepasseAConv",$VrRepasseAConv);
+		if (empty($VrCpAConv)) {
+			$VrCpAConv = 0;
 		}
-		$sql->bindValue(":QtdKg",$QtdKg);
-		if (empty($VrKg)) {
-			$VrKg = 0;
+		$sql->bindValue(":VrCpAConv",$VrCpAConv);
+		if (empty($VrTotalConv)) {
+			$VrTotalConv = 0;
 		}
-		$sql->bindValue(":VrKg",$VrKg);
-		if (empty($Preco)) {
-			$Preco = 0;
-		}
-		$sql->bindValue(":Preco",$Preco);
-		$sql->bindValue(":DescCarreg",$DescCarreg);
-		$sql->bindValue(":TpFrete",$TpFrete);
-		$sql->bindValue(":Qtde",$Qtde);
-		$sql->bindValue(":CondPgto",$CondPgto);
-		$sql->bindValue(":Carretas",$Carretas);
-		$sql->bindValue(":Funrural",$Funrural);
-		$sql->bindValue(":LocRetirada",$LocRetirada);
-		$sql->bindValue(":Prazo",$Prazo);
-		if (empty($DataVF)) {
-			$DataVF = '0001-01-01';
-		}
-		$sql->bindValue(":DataVF",$DataVF);
-		$sql->bindValue(":V",$V);
-		$sql->bindValue(":VrV",$VrV);
-		if (empty($Contratante)) {
-			$Contratante = 0;
-		}
-		$sql->bindValue(":Contratante",$Contratante);
-		if (empty($PorTon)) {
-			$PorTon = 0;
-		}
-		$sql->bindValue(":PorTon",$PorTon);
+		$sql->bindValue(":VrTotalConv",$VrTotalConv);
+		$sql->bindValue(":ObsConv",$ObsConv);
 		if (empty($DataCancel)) {
 			$DataCancel = '0001-01-01';
 		}
@@ -257,8 +207,6 @@ class Contratos extends Model{
 			$CodEmp = 0;
 		}
 		$sql->bindValue(":CodEmp",$CodEmp);
-		$sql->bindValue(":Extenso",$Extenso);
-		$sql->bindValue(":Extenso1",$Extenso1);
 
 		$sql->execute();
 
@@ -271,8 +219,8 @@ class Contratos extends Model{
 		$array = array();
 
 		$sql = $this->db->query('SET NAMES utf8');
-		$sql = $this->db->prepare("SELECT * FROM contrato WHERE cmpCodLanc = :cmpCodLanc");
-		$sql->bindValue(":cmpCodLanc",$id);
+		$sql = $this->db->prepare("SELECT * FROM convenio WHERE cmpCodConv = :cmpCodConv");
+		$sql->bindValue(":cmpCodConv",$id);
 		$sql->execute();
 
 		if($sql->rowCount() > 0){
@@ -285,9 +233,9 @@ class Contratos extends Model{
 	
 	public function del($id){
 
-		if ($this->validaContratoDel($id) == true) {
-			$sql = $this->db->prepare("DELETE from contrato where cmpCodLanc = :cmpCodLanc");
-			$sql->bindValue(":cmpCodLanc", $id);
+		if ($this->validaConvenioDel($id) == true) {
+			$sql = $this->db->prepare("DELETE from convenio where cmpCodConv = :cmpCodConv");
+			$sql->bindValue(":cmpCodConv", $id);
 			$sql->execute();
 			return true;
 		} else {
@@ -298,13 +246,41 @@ class Contratos extends Model{
 	}
 
 
-	public function validaContratoDel($id){
+	public function validaConvenioDel($id){
 		$valida = 0;
-		$sql = $this->db->prepare("SELECT count(cmpContratoCompra) as tot from frete where cmpContratoCompra = :cmpCodLanc");
-		$sql->bindValue(":cmpCodLanc", $id);
-		$sql->execute();
-		$valida = $sql->fetch();
-		if($valida['tot']  == '0'){
+		$valida1 = 0;
+		$valida2 = 0;
+		$valida3 = 0;
+		$valida4 = 0;
+		$valida5 = 0;
+		$sql1 = $this->db->prepare("SELECT count(cmpCodConv) as tot1 from conveniolicitacao where cmpCodConv = :cmpCodConv");
+		$sql1->bindValue(":cmpCodConv", $id);
+		$sql1->execute();
+		$valida1 = $sql1->fetch();
+
+		$sql2 = $this->db->prepare("SELECT count(cmpCodConv) as tot2 from conveniocontrato where cmpCodConv = :cmpCodConv");
+		$sql2->bindValue(":cmpCodConv", $id);
+		$sql2->execute();
+		$valida2 = $sql2->fetch();
+
+		$sql3 = $this->db->prepare("SELECT count(cmpCodConv) as tot3 from convenioaditivo where cmpCodConv = :cmpCodConv");
+		$sql3->bindValue(":cmpCodConv", $id);
+		$sql3->execute();
+		$valida3 = $sql3->fetch();
+
+		$sql4 = $this->db->prepare("SELECT count(cmpCodConv) as tot4 from conveniodesembolso where cmpCodConv = :cmpCodConv");
+		$sql4->bindValue(":cmpCodConv", $id);
+		$sql4->execute();
+		$valida4 = $sql4->fetch();
+
+		$sql5 = $this->db->prepare("SELECT count(cmpCodConv) as tot5 from conveniopagamento where cmpCodConv = :cmpCodConv");
+		$sql5->bindValue(":cmpCodConv", $id);
+		$sql5->execute();
+		$valida5 = $sql5->fetch();
+
+		$valida = $valida1['tot1'] . $valida2['tot2'] . $valida3['tot3'] . $valida4['tot4'] . $valida5['tot5'];
+
+		if($valida  == '00000'){
 			return true;
 		}else{
 			return false;
@@ -317,9 +293,9 @@ class Contratos extends Model{
 		$array = array();
 
 		$sql = $this->db->query('SET NAMES utf8');
-		$sql= $this->db->prepare("SELECT a.*, b.cmpNomePro, c.cmpNomFor, d.cmpNomCli, e.cmpNomCli as cmpNomCliC, f.cmpNomeEmp FROM contrato a left join produto b on a.cmpCodPro = b.cmpCodPro left join fornecedor c on a.cmpCodFor = c.cmpCodFor left join clientes d on a.cmpCodCli = d.cmpCodCli left join contratante e on a.cmpContratante = e.cmpCodCli left join empresa f on a.cmpCodEmp = f.cmpCodEmp WHERE a.cmpCodLanc = :cmpCodLanc");
+		$sql= $this->db->prepare("SELECT a.*, b.cmpNomeGes, c.cmpNomeFis, d.cmpNomPre FROM convenio a left join gestor b on a.cmpCodGes = b.cmpCodGes left join fiscal c on a.cmpCodFis = c.cmpCodFis left join prefeitura d on a.cmpCodPre = d.cmpCodPre WHERE a.cmpCodConv = :cmpCodConv");
 		
-		$sql->bindValue(":cmpCodLanc",$id);
+		$sql->bindValue(":cmpCodConv",$id);
 		$sql->execute();
 
 		if($sql->rowCount() > 0){
@@ -331,10 +307,10 @@ class Contratos extends Model{
 
 
 
-	public function getContratos(){
+	public function getConvenios(){
 		$array = array();
 		$sql = $this->db->query('SET NAMES utf8');
-		$sql = $this->db->query("SELECT cmpCodLanc, cmpDataLanc, cmpContrato FROM contrato where cmpTipo = 'COMPRA' ORDER BY cmpDataLanc");
+		$sql = $this->db->query("SELECT cmpCodConv, cmpDtVigenciaConv, cmpNumConv FROM convenio ORDER BY cmpDtVigenciaConv");
 		$sql->execute();
 		if($sql->rowCount() > 0){
 			$array = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -343,61 +319,15 @@ class Contratos extends Model{
 	}
 
 
-	public function getContratosfor(){
+	public function getConveniosges(){
 		$array = array();
 		$sql = $this->db->query('SET NAMES utf8');
-		$sql = $this->db->query("SELECT a.cmpCodLanc, b.cmpNomFor, a.cmpDataLanc FROM contrato a left join fornecedor b on a.cmpCodFor=b.cmpCodFor ORDER BY b.cmpNomFor, a.cmpDataLanc");
+		$sql = $this->db->query("SELECT a.cmpCodConv, b.cmpNomeGes, a.cmpDtVigenciaConv FROM convenio a left join gestor b on a.cmpCodGes=b.cmpCodGes ORDER BY b.cmpNomeGes, a.cmpDtVigenciaConv");
 		$sql->execute();
 		if($sql->rowCount() > 0){
 			$array = $sql->fetchAll(PDO::FETCH_ASSOC);
 		}
 		return $array;
 	}
-
-
-// Gerar CSV
-
-	public function csvContratosPorPeriodo($data1, $data2){
-		$dados = array();
-
-		$sql = $this->db->query('SET NAMES utf8');
-		$sql = $this->db->prepare("SELECT a.cmpCodLanc, (case when CAST(a.cmpDataLanc AS DATE)='0001-01-01'then ''else DATE_FORMAT(CAST(a.cmpDataLanc AS DATE),'%d/%m/%Y')end) AS DataLanc, d.cmpNomFor, e.cmpNomPro, format(a.cmpQtdSaca,3,'de_DE'), format(a.cmpQtdTon,3,'de_DE'), format(a.cmpQtdKgTotal,3,'de_DE'), format(a.cmpVrSaco,2,'de_DE'), format(a.cmpVrTotalCon,2,'de_DE') FROM (select 'X' as X, a.* from contrato a) a left join fornecedor d on a.cmpCodFor=d.cmpCodFor left join produto e on a.cmpCodPro=e.cmpCodPro where (case when a.cmpDataLanc='0001-01-01'then ''else DATE_FORMAT(a.cmpDataLanc,'%Y%m%d')end) Between date(:data1) and date(:data2) ORDER BY a.cmpDataLanc, d.cmpNomFor");
-		
-		if (empty($data1)) {
-			$data1 = '0001-01-01';
-		}
-		$sql->bindValue(":data1",$data1);
-		if (empty($data2)) {
-			$data2 = '0001-01-01';
-		}
-		$sql->bindValue(":data2",$data2);
-		$sql->execute();
-
-		if($sql->rowCount() > 0){
-			$dados = $sql->fetchAll(PDO::FETCH_ASSOC);
-		}
-		return $dados;
-	}
-
-
-	public function csvContratosPorFornecedor($CodFor){
-		$dados = array();
-
-		$sql = $this->db->query('SET NAMES utf8');
-		$sql = $this->db->prepare("SELECT d.cmpNomFor, a.cmpCodLanc, (case when CAST(a.cmpDataLanc AS DATE)='0001-01-01'then ''else DATE_FORMAT(CAST(a.cmpDataLanc AS DATE),'%d/%m/%Y')end) AS DataLanc, e.cmpNomPro, format(a.cmpQtdSaca,3,'de_DE'), format(a.cmpQtdTon,3,'de_DE'), format(a.cmpQtdKgTotal,3,'de_DE'), format(a.cmpVrSaco,2,'de_DE'), format(a.cmpVrTotalCon,2,'de_DE') FROM (select 'X' as X, a.* from contrato a) a left join fornecedor d on a.cmpCodFor=d.cmpCodFor left join produto e on a.cmpCodPro=e.cmpCodPro where a.cmpCodFor = :CodFor ORDER BY a.cmpDataLanc");
-		
-		if (empty($CodFor)) {
-			$CodFor = 0;
-		}
-		$sql->bindValue(":CodFor",$CodFor);
-		$sql->execute();
-
-		if($sql->rowCount() > 0){
-			$dados = $sql->fetchAll(PDO::FETCH_ASSOC);
-		}
-		return $dados;
-	}
-
-// Fim CSV
 
 }

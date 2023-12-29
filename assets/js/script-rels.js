@@ -48,86 +48,53 @@ function ocultaPar(val) {
 
 
 // Contrato
-function relCon(){
+function relConv(){
   var rel = $("#relat").val();
-  var CodFor = $("#CodFor").val();
-  var CodCli = $("#CodCli").val();
-  var CodPro = $("#CodPro").val();
-  var tipoc = $("#tipoc").val();
+  var CodPre = $("#CodPre").val();
+  var CodGes = $("#CodGes").val();
+  var tipoc = $("#CodFis").val();
   var data1 = $("#data1").val();
   var data2 = $("#data2").val();
   if (rel=='relConP') {
-    window.open("relfuncconP/"+data1+'/'+data2);
+    window.open("relfuncconvP/"+data1+'/'+data2);
   }
-  if (rel=='relConPCli') {
-    window.open("relfuncconPCli/"+data1+'/'+data2+'/'+CodCli);
+  if (rel=='relConPGes') {
+    window.open("relfuncconvPGes/"+data1+'/'+data2+'/'+CodGes);
   }
-  if (rel=='relConPFor') {
-    window.open("relfuncconPFor/"+data1+'/'+data2+'/'+CodFor);
+  if (rel=='relConvPPre') {
+    window.open("relfuncconvPPre/"+data1+'/'+data2+'/'+CodPre);
   }
   if (rel=='relConPTipo') {
-    window.open("relfuncconPTipo/"+data1+'/'+data2+'/'+tipoc);
-  }
-  if (rel=='relConPTipoPro') {
-    window.open("relfuncconPTipoPro/"+data1+'/'+data2+'/'+tipoc+'/'+CodPro);
-  }
-  if (rel=='relConPEstoqueDet') {
-    window.open("relfuncconPEstoqueDet/"+data1+'/'+data2);
-  }
-  if (rel=='relConPEstoquePro') {
-    window.open("relfuncconPEstoquePro/"+data1+'/'+data2+'/'+CodPro);
-  }
-  if (rel=='relConPEstoqueTipoPro') {
-    window.open("relfuncconPEstoqueTipoPro/"+data1+'/'+data2+'/'+tipoc+'/'+CodPro);
-  }
-  if (rel=='relConPCancel') {
-    window.open("relfuncconPCancel/"+data1+'/'+data2);
+    window.open("relfuncconvPDis/"+data1+'/'+data2+'/'+CodFis);
   }
 }
 
-function ocultaCon(val) {
-  if (val.value == 'relConP' || val.value == 'relConPEstoqueDet' || val.value == 'relConPCancel') {
+function ocultaConv(val) {
+  if (val.value == 'relConvP') {
     document.getElementById('data12X').style.display = 'block';
-    document.getElementById('CodForX').style.display = 'none';
-    document.getElementById('CodCliX').style.display = 'none';
-    document.getElementById('CodProX').style.display = 'none';
-    document.getElementById('tipocX').style.display = 'none';
-  } else if (val.value == 'relConPCli') {
+    document.getElementById('CodPreX').style.display = 'none';
+    document.getElementById('CodGesX').style.display = 'none';
+    document.getElementById('CodFisX').style.display = 'none';
+  } else if (val.value == 'relConvPGes') {
     document.getElementById('data12X').style.display = 'block';
-    document.getElementById('CodForX').style.display = 'none';
-    document.getElementById('CodCliX').style.display = 'block';
-    document.getElementById('CodProX').style.display = 'none';
-    document.getElementById('tipocX').style.display = 'none';
-  } else if (val.value == 'relConPFor') {
+    document.getElementById('CodGesX').style.display = 'block';
+    document.getElementById('CodPreX').style.display = 'none';
+    document.getElementById('CodFisX').style.display = 'none';
+  } else if (val.value == 'relConvPPre') {
     document.getElementById('data12X').style.display = 'block';
-    document.getElementById('CodForX').style.display = 'block';
-    document.getElementById('CodCliX').style.display = 'none';
-    document.getElementById('CodProX').style.display = 'none';
-    document.getElementById('tipocX').style.display = 'none';
-  } else if (val.value == 'relConPTipo') {
+    document.getElementById('CodGesX').style.display = 'none';
+    document.getElementById('CodPreX').style.display = 'block';
+    document.getElementById('CodFisX').style.display = 'none';
+  } else if (val.value == 'relConvPFis') {
     document.getElementById('data12X').style.display = 'block';
-    document.getElementById('CodForX').style.display = 'none';
-    document.getElementById('CodCliX').style.display = 'none';
-    document.getElementById('CodProX').style.display = 'none';
-    document.getElementById('tipocX').style.display = 'block';
-  } else if (val.value == 'relConPTipoPro' || val.value == 'relConPEstoqueTipoPro') {
-    document.getElementById('data12X').style.display = 'block';
-    document.getElementById('CodForX').style.display = 'none';
-    document.getElementById('CodCliX').style.display = 'none';
-    document.getElementById('CodProX').style.display = 'block';
-    document.getElementById('tipocX').style.display = 'block';
-  } else if (val.value == 'relConPEstoquePro') {
-    document.getElementById('data12X').style.display = 'block';
-    document.getElementById('CodForX').style.display = 'none';
-    document.getElementById('CodCliX').style.display = 'none';
-    document.getElementById('CodProX').style.display = 'block';
-    document.getElementById('tipocX').style.display = 'none';
+    document.getElementById('CodGesX').style.display = 'none';
+    document.getElementById('CodPreX').style.display = 'none';
+    document.getElementById('CodFisX').style.display = 'block';
   } else {
     document.getElementById('data12X').style.display = 'none';
-    document.getElementById('CodForX').style.display = 'none';
-    document.getElementById('CodCliX').style.display = 'none';
-    document.getElementById('CodProX').style.display = 'none';
-    document.getElementById('tipocX').style.display = 'none';
+    document.getElementById('CodGesX').style.display = 'none';
+    document.getElementById('CodPreX').style.display = 'none';
+    document.getElementById('CodFisX').style.display = 'none';
   } 
 };
 

@@ -132,3 +132,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#28a745', end
 [data-tooltip]:hover:before {
   display: block;
 }
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

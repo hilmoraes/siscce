@@ -194,27 +194,14 @@ class Prefeituras extends model{
 
 	public function getPrefeituras(){
 
-		$sta = $_SESSION['status'];
-		$col = $_SESSION['codCol'];
-		$pre = $_SESSION['codPre'];
-
 		$array = array();
 		$sql = $this->db->query('SET NAMES utf8');
-		if ($pre>0) {
-			$sql = $this->db->prepare("SELECT cmpCodPre, cmpNomPre FROM prefeitura where inativo='0' and cmpCodPre = :pre ORDER BY cmpNomPre");
-			$sql->bindValue(":pre", $pre);
-			$sql->execute();
-		} else {
-			$sql = $this->db->query("SELECT cmpCodPre, cmpNomPre FROM prefeitura where inativo='0' ORDER BY cmpNomPre");
-		}
-		
+		$sql = $this->db->query("SELECT cmpCodPre, cmpNomPre FROM prefeitura ORDER BY cmpNomPre");
+		$sql->execute();
 		if($sql->rowCount() > 0){
-
 			$array = $sql->fetchAll(PDO::FETCH_ASSOC);
 		}
-
 		return $array;
-
 	}
 
 

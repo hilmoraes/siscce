@@ -3,7 +3,10 @@
     unset($_SESSION['msg']);
 }?>
 
-<?php include("funcoes/funcoes.php"); ?>
+<?php 
+  include("funcoes/funcoes.php"); 
+  $tipopessoa = tipoPessoa::getTipoPessoaArray();
+?>
 
 <div class="container-fluid">
   <div class="row mb-2"></div>
@@ -66,9 +69,11 @@
                   <label for="FJPar">Fisica ou Juridica?</label>
                   <select name="FJPar" id="FJPar" class="form-control input-sm">
                     <option value="<?php echo $parceiro['cmpFJPar'];?>"><?php echo $parceiro['cmpFJPar'];?></option>
-                    <option></option>
-                    <option value="FISICA">FISICA</option>
-                    <option value="JURIDICA">JURIDICA</option>
+                    <?php
+                    foreach ($tipopessoa as $day) {
+                        echo "<option value=\"$day\">$day</option>";
+                    }
+                    ?>
                   </select>
                 </div>
               </div>
