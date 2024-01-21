@@ -1,0 +1,886 @@
+/* configuração para as Telas iniciais e menu principal */
+*{margin: 0; padding:0;}
+
+html, body {height:100%;}
+
+.container {
+	margin: 0 auto;
+	width: 100%;
+}
+
+.container1 {
+	margin: 0 auto;
+	width: 100%;
+	height: 85%;
+}
+
+
+#body {
+	background: url(Images/photo1.jpg) no-repeat center;
+	background-size: cover;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+ 
+.geral {
+	min-height: 100%;
+	position: relative;
+}
+
+.fleft img {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -125px;
+}
+
+
+.footer {
+	position:absolute;
+	bottom:0;
+	width: 100%;
+	text-align: center;
+	border-top: 1px solid black;
+	color:#ffffff;
+	background: #993333;
+	background-color:#219e95;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+}
+
+h1{
+	text-align: center;
+	color: #ffffff;
+	background: #993333;
+	margin-bottom: 0px;
+	background-color:#219e95;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+}
+
+h3{
+	text-align: center;
+	color: #ffffff;
+	background: #993333;
+	margin-bottom: 0px;
+	background-color:#99cc66;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+}
+
+h4{
+	text-align: center;
+	color: #ffffff;
+	background: #009933;
+	margin-bottom: 0px;
+	font-size: 20px;
+	background-color:#219e95;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+}
+
+h5{
+	text-align: center;
+	color: #ffffff;
+	background: #009933;
+	margin-bottom: 0px;
+	font-size: 20px;
+	background-color:#219e95;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+	left: 250px;
+	width:50%;
+}
+
+h7{
+	text-align: center;
+	color: #ffffff;
+	background: #993333;
+	margin-bottom: 0px;
+	background-color:#219e95;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+}
+
+h8{
+	text-align: left;
+	color: #fff;
+	margin-bottom: 0px;
+/*	background-color:#00cc99;*/
+}
+
+.posidireita p{
+	float: right;
+}
+
+body{
+	background-color: #fff;
+}
+
+*{margin: 0; padding:0;}
+
+.navbar-white {
+    background: -webkit-gradient(linear, left top, right top, from(#c2ce81), to(#40b0a8)) no-repeat;
+        background: -moz-linear-gradient(left, #c2ce81, #40b0a8);
+        filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr='#c2ce81', EndColorStr='#40b0a8');
+    font-size: 14pt;
+}
+
+.lnk_sistema{
+
+	margin-top: 14px; 
+	color:#fff !important;
+}
+
+/*teste
+
+.menu,
+
+.menu li a{
+	display: block;
+	padding-right: 50px;
+		
+}
+
+.sub-menu {
+    margin: 0;
+    padding: 0;
+}
+
+.clearfix:after{
+    content: '.';
+    display: block;
+    clear: both;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    visibility: hidden;
+    overflow: hidden;
+}
+
+.menu,
+.sub-menu {
+    list-style: none;
+    background: #006633;
+    background-color:#d9b03a;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+}
+
+sub-menu {
+    background: #006633;
+    background-color:#d9b03a;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+}
+.menu a {
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    color: #cccccc;
+    font-family: times new roman;
+    font-size: 18px;
+    font-weight: 700;
+}
+.menu li {
+    position: relative;
+}
+
+.menu > li {
+    float: left;
+}
+
+.menu > li:hover {
+    background: #cccccc;
+    background-color:#d9b03a;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+}
+
+.menu ul a:hover {
+    background: #999999;
+}
+
+.menu li:hover > .sub-menu {
+    display: block;
+}
+.sub-menu {
+    display: none;
+    position: absolute;
+    min-width: 150px;
+}
+
+.sub-menu li:hover {
+    background: #999999;
+
+}
+.sub-menu .sub-menu {
+    top: 0;
+    left: 100%;
+}*/
+
+.item a{
+	text-align: left;
+}
+
+.nav {
+    margin-bottom: 0px;
+    background: url(Imagem/azul2.jpg) ;
+    background-size: 100% 100%;
+    width: 100%;
+}
+
+.nav {
+    position: relative;
+    top: 0px;
+    left: 0px; 
+    text-align: center;
+
+}
+
+.menu li:hover{
+    background: url(Imagem/azul.jpg) bottom right;
+    transition: background 0.8s;
+    border-radius: 10px;
+}
+
+.menu li a{
+    display: block;
+    padding-right: 70px;
+    border-radius: 10px;
+        
+}
+.menu{
+    display: inline;
+    list-style: none; 
+    border-radius: 10px; 
+}
+
+.sub-menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.clearfix:after{
+    content: '.';
+    display: block;
+    clear: both;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    visibility: hidden;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.menu a {
+    text-decoration: none;
+    display: block;
+    padding: 10px 0px 0px 10px;
+    color: #ffffff;
+    font-family: times new roman;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.item {
+    position: relative;
+    background: url(Imagem/azul2.jpg) no-repeat center;
+    background-size: 100% 100%;
+    border-radius: 10px;
+    
+}
+
+.menu > li {
+    float: left;
+}
+
+.menu li:hover > .sub-menu {
+    display: block;
+}
+
+.sub-menu {
+    display: none;
+    position: absolute;
+    min-width: 150px;
+}
+
+.sub-menu .sub-menu {
+    top: 0;
+    left: 100%;
+}
+
+ .sub-menu li:hover{
+    background: url(Imagem/azul.jpg) left top;
+    transition: background 0.8s;
+}
+
+
+
+/*fim do teste*/
+
+.aside p{
+	background-color: #fff;
+	text-align: left;
+	font-size: 14pt;
+	color:#219e95;
+}
+
+.header p{
+	position: fixed;
+	top:40px;
+	left:87%;
+	font-size: 16pt;
+	color:#fff;
+}
+
+/* configuração para as listas */
+
+img {
+	width: 247px;
+	height: auto;
+}
+
+#img1{
+	position: absolute;
+	padding-left: 0px;
+	padding-top: 0px;
+	width: 150px;
+	height: 50;
+	}
+
+#img2{
+	position: relative;
+
+	}
+
+table#tab td{
+	padding-left: 0px;
+}
+
+#tab input {
+	border: 1px solid black;
+}
+
+#tabIndex input {
+	border: 1px solid black;
+}
+
+#tab textarea {
+	border: 1px solid black;
+}
+
+#tabIndex textarea {
+	border: 1px solid black;
+}
+
+#tbSis {
+	position: relative;
+	left: 0px;
+	border: 2px solid #660000;
+}
+
+#pesq {
+	margin-bottom: 20px;
+	padding: 5px;
+}
+#pesq:hover{
+	background-color: #faffbd;
+}
+
+#tbSis td {
+	border: 1px solid #cecece;
+	padding-left: auto;
+	padding-right: auto;
+	text-align: center;
+	font-size: 12pt;
+	border: 1px solid #CCC;
+	color: #000000;
+	/*background: #e6e6e6;*/
+	border: 1px solid #660000;
+}
+
+#tbSis2 td {
+	border: 1px solid #cecece;
+	padding-left: auto;
+	padding-right: auto;
+	text-align: left;
+	font-size: 12pt;
+	border: 1px solid #CCC;
+	color: #000000;
+	/*background: #e6e6e6;*/
+	border: 1px solid #660000;
+}
+
+table img {
+	width: 30px;
+	height: 30px;
+}
+
+table {
+	border-spacing: 0px;
+	vertical-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#tab{
+	position: relative;
+	padding: 5px;
+	margin: 0px;
+	border: 3px groove;
+	background-color: #ffffcc;
+	/*background: transparent url('Imagem/tela4.jpg') repeat center;*/
+	border-radius: 10px;
+}
+
+.formfundo{
+	position: relative;
+	padding: 5px;
+	margin: 0px;
+	border: 1px groove;
+/*	background-color: #cccc66;*/
+	border-radius: 10px;
+}
+
+.txt{
+	border: none;
+	border-radius: 5px;
+	background-color: #ffffff;
+	padding: 5px;
+	margin: 0px;
+}
+
+.txt:hover{
+	background-color: #faffbd;
+}
+
+.btn-form{
+	background-color: #34495e;
+	color: #fff;
+}
+
+#btLogar{
+	margin-left: 145px;
+	top: 5px;
+	left: 220px;
+	width: 100px;
+	height: 30px;
+	font-weight: 900;
+	background-color:#219e95;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+	border-radius: 10px;
+	color:#fff;
+}
+#btLogar:hover {background-position: right -34px;}
+
+#btmPesq{
+	top: 5px;
+	left: 220px;
+	width: 100px;
+	height: 30px;
+	font-weight: 900;
+	background-color:#219e95;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+	border-radius: 10px;
+	color:#fff;
+}
+#btmPesq:hover {background-position: right -34px;}
+
+
+#btmCad{
+	position: relative;
+	top: 5px;
+	left: 300px;
+	width: 100px;
+	height: 30px;
+	font-weight: 900;
+	background-color:#219e95;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+	border-radius: 10px;
+	color:#fff;
+}
+#btmCad:hover {background-position: right -34px;}
+
+#btmCad1{
+	position: relative;
+	top: 5px;
+	left: 300px;
+	width: 250px;
+	height: 30px;
+	font-weight: 900;
+	background-color:#219e95;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+	border-radius: 10px;
+	color:#fff;
+}
+#btmCad1:hover {background-position: right -34px;}
+
+#btmCad2{
+	position: relative;
+	top: 5px;
+	left: 300px;
+	width: 200px;
+	height: 30px;
+	font-weight: 900;
+	background-color:#219e95;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+	border-radius: 10px;
+	color:#fff;
+}
+#btmCad2:hover {background-position: right -34px;}
+
+#btmCancel {
+	position: relative;
+	top: 5px;
+	left: 300px;
+	width: 100px;
+	height: 30px;
+	font-weight: 900;
+	background-color:#219e95;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+	border-radius: 10px;
+	color:#fff;
+}
+#btmCancel:hover {background-position: right -34px;}
+
+#btVoltar{
+	position: relative;
+	top: 5px;
+	left: 80px;
+	width: 100px;
+	height: 30px;
+	font-weight: 900;
+	background-color:#219e95;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+	border-radius: 10px;
+	color:#fff;
+}
+#btVoltar:hover {background-position: right -34px;}
+
+#btImpPres{
+	position: relative;
+	top: 5px;
+	left: 80px;
+	width: 170px;
+	height: 30px;
+	font-weight: 900;
+	background-color:#219e95;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+	border-radius: 10px;
+	color:#fff;
+}
+#btImpPres:hover {background-position: right -34px;}
+
+#btCad {
+	position: relative;
+	top: 5px;
+	left: 80px;
+	width: 100px;
+	height: 30px;
+	font-weight: 900;
+	/*background: transparent url('Imagem/Botao.jpg') no-repeat right;*/
+	background-color:#219e95;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+	border-radius: 10px;
+	color:#fff;
+}
+#btCad:hover {background-position: right -34px;}
+
+form#procura h8{
+	font-family: 'Gill Sans MT', sans-serif;
+	color: #219e95;
+}
+
+input:hover {
+	background-color: #cecece;
+}
+
+td#quant{
+	border: none;
+}
+
+#prescricao {
+	text-decoration: none;
+	font-weight: 900;
+	color: blue;
+}
+
+#prescricao:hover {
+	text-decoration: underline;
+}
+
+.scroll {
+	height: 62%; 
+	width: 100%; 
+	overflow: auto; 
+	border-radius: 10px;
+} 
+
+.scroll2 {
+	height: 58%; 
+	width: 100%; 
+	overflow: auto; 
+	border-radius: 10px;
+}
+
+#pg a {
+	font-size: 20px;
+	font-weight: 900;
+	color: black;
+}
+
+.LisCor1{
+	color: #ffffff;
+	background-color:#999999;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+}
+
+.LisCor2{
+	color: #ffffff;
+	background-color:#e5e5e5;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+}
+
+.LisCor3{
+	color: #ffffff;
+	background-color:#ff6633;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+}
+
+.LisCor4{
+	color: #ffffff;
+	background-color:#00cc00;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+}
+
+#dtc {
+	background-color:#0099ff;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+	border-radius: 10px;
+	color:#000;
+}
+
+#medicoCo {
+	background-color:#0099ff;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+	border-radius: 10px;
+	color:#000;
+}
+
+/*tab para popup */
+#tab1{
+	position: relative;
+	padding: 5px;
+	left: 0px;
+	height: 150px;
+	margin: 0px;
+	border: 3px groove;
+	background-color: #ffffcc;
+	/*background: transparent url('Imagem/tela4.jpg') repeat center;*/
+	border-radius: 10px;
+}
+
+table#tab1 td{
+	padding-left: 0px;
+}
+
+#tab1 input {
+	border: 1px solid black;
+}
+
+#tab1Index input {
+	border: 1px solid black;
+}
+
+#tab1 textarea {
+	border: 1px solid black;
+}
+
+#tab1Index textarea {
+	border: 1px solid black;
+}
+
+
+#tab2{
+	position: relative;
+	padding: 5px;
+	left: 0px;
+	height: 150px;
+	margin: 0px;
+	border: 3px groove;
+	background-color: #ffffcc;
+	/*background: transparent url('Imagem/tela4.jpg') repeat center;*/
+	border-radius: 10px;
+}
+
+table#tab2 td{
+	padding-left: 0px;
+}
+
+#tab2 input {
+	border: 1px solid black;
+}
+
+#tab2Index input {
+	border: 1px solid black;
+}
+
+#tab2 textarea {
+	border: 1px solid black;
+}
+
+#tab2Index textarea {
+	border: 1px solid black;
+}
+
+table#tab2 td{
+	padding-left: 0px;
+}
+
+#tab3{
+	position: relative;
+	border: 3px groove;
+	background-color: #ffffcc;
+	background: transparent url('Imagem/azul2.jpg') repeat center left;
+	border-radius: 10px;
+}
+
+#tab3 input {
+	border: 1px solid black;
+}
+
+#tab3 textarea {
+	border: 1px solid black;
+}
+
+#tab4{
+	position: relative;
+	border: 3px groove;
+	background-color: #ffffcc;
+	background: transparent url('Imagem/azul3.jpg') repeat center;
+	border-radius: 10px;
+}
+
+#tab4 input {
+	border: 1px solid black;
+}
+
+#tab4 textarea {
+	border: 1px solid black;
+}
+
+#div1{
+	position: absolute;
+	left:-10%;
+}
+
+#div2{
+	position: absolute;
+	left:15%;
+}
+
+
+/*Configuração para formulários com abas*/
+
+.TabControl{
+	position: relative;
+	width:100%;
+	left: 0px;
+	margin: 0px;
+	overflow:hidden;
+} 
+
+.TabControl #header{ 
+	width:100%; 
+	overflow:hidden; 
+	cursor:hand
+} 
+
+.TabControl #content{ 
+	width:100%;
+	overflow:hidden;
+} 
+
+.TabControl .abas{
+	display:inline;
+} 
+
+.TabControl .abas li{
+	float:left;
+	list-style: none;
+} 
+
+.aba{
+	width:100px; 
+	height:30px; 
+	border:solid 1px; 
+	border-radius:5px 5px 0 0; 
+	text-align:center; 
+	padding-top:5px; 
+	background-color:#219e95;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+	color:#fff;
+} 
+
+.ativa{
+	width:100px; 
+	height:30px; 
+	border:solid 1 px; 
+	border-radius:5px 5px 0 0; 
+	text-align:center; 
+	padding-top:5px; 
+	background-color:#219e95;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+} 
+
+.ativa span, .selected span{
+	color:#fff;
+} 
+
+.TabControl .conteudo{
+	width:100%;
+	display:none;
+} 
+
+.conteudo input {
+	border: 1px solid black;
+}
+
+.conteudo textarea {
+	border: 1px solid black;
+}
+
+.selected{
+	width:100px; 
+	height:30px; 
+	border:solid 1 px; 
+	border-radius:5px 5px 0 0; 
+	text-align:center; 
+	padding-top:5px; 
+	background-color:#0000cc;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+}
+
+#textA {
+	color:black;
+	text-align: justify;
+}
+
+#calendario {
+	position: absolute;
+	top: 30%;
+	left: 2%;
+}
+
+#consultaCor1{
+	color: #ffffff;
+	background-color:#999999;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+}
+
+#consultaCor2{
+	color: #ffffff;
+	background-color:#e5e5e5;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+}
+
+#consultaCor3{
+	color: #ffffff;
+	background-color:#00cc00;
+	background-image: linear-gradient(to bottom, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,0), rgba(255,255,255,.4));
+}

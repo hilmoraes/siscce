@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FornecedorD" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="10c7d69a-26d7-48b2-96e4-cceb16961ea1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="rel" class="java.lang.String">
+		<parameterDescription><![CDATA[1]]></parameterDescription>
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="inativo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT a.cmpCodFor,
+     a.cmpNomFor,
+     a.cmpFonFor,
+     a.cmpFaxFor,
+     CONCAT(a.cmpEndFor, a.cmpNumEndFor,' - ',a.cmpBaiFor,' -  ',a.cmpCepFor) AS end,
+     CONCAT(b.nm_cidade,' - ',c.nm_estado) AS cid,
+     a.cmpPontoRefFor,
+     CONCAT(a.cmpEndRFor, a.cmpNumEndRFor,' - ',a.cmpBaiRFor,' - ',a.cmpCepRFor) AS endr,
+      CONCAT(d.nm_cidade,' - ',e.nm_estado) AS cidr,
+     a.cmpFonRFor,
+     a.cmpCnpjFor,
+     a.cmpCgfFor,
+     a.cmpEmail,
+     a.cmpEmailFinanceiro,
+     a.cmpBancoFor1,
+     a.cmpAgFor1,
+     a.cmpCCFor1,
+     a.cmpBancoFor2,
+     a.cmpAgFor2,
+     a.cmpCCFor2,
+     a.cmpObs,
+     a.inativo,
+     if(a.inativo=1,"INATIVOS","ATIVOS") as ina
+FROM
+     fornecedor a left join cidades b on a.cmpCodCid=b.id_cidade left join estados c on b.id_estado=c.id_estado  left join cidades d on a.cmpCodCidR=d.id_cidade left join estados e on d.id_estado=e.id_estado
+where a.inativo = $P{inativo}
+ORDER BY
+     a.cmpNomFor ASC]]>
+	</queryString>
+	<field name="cmpCodFor" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cmpNomFor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cmpFonFor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cmpFaxFor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="end" class="java.lang.String"/>
+	<field name="cid" class="java.lang.String"/>
+	<field name="cmpPontoRefFor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="endr" class="java.lang.String"/>
+	<field name="cidr" class="java.lang.String"/>
+	<field name="cmpFonRFor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cmpCnpjFor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cmpCgfFor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cmpEmail" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cmpEmailFinanceiro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cmpBancoFor1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cmpAgFor1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cmpCCFor1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cmpBancoFor2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cmpAgFor2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cmpCCFor2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cmpObs" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="inativo" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ina" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="4" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="168" y="0" width="519" height="29" uuid="6ba04612-3ee2-4b78-a0cf-7cebe8dba157"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Relação de Fornecedores (D)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="694" y="3" width="100" height="20" uuid="f5071f5d-54d1-4125-8cc1-108c785c9ed7"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ina}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="24" width="795" height="20" uuid="dab4270a-3ece-4d28-8f5d-4f85484b6889"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[_____________________________________________________________________________________________________________________________________________________________]]></text>
+			</staticText>
+			<image>
+				<reportElement x="2" y="3" width="72" height="32" uuid="e0e7ab92-bc19-4362-b767-b01be739cea4"/>
+				<imageExpression><![CDATA["imgrel.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="3" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="86" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="0" width="44" height="16" uuid="543d4534-9e9a-49c1-ba78-8f63cb344642"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Forn.:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="263" y="16" width="31" height="16" uuid="a9517dcf-b451-44a1-8fa5-7345f260ea62"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[End:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="48" y="0" width="254" height="16" uuid="8cca7b67-0432-458e-b050-e13744295960"/>
+				<textFieldExpression><![CDATA[$F{cmpNomFor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="355" y="0" width="171" height="16" uuid="affe3d14-7702-45bc-978d-4106d7785f6f"/>
+				<textFieldExpression><![CDATA[$F{cmpPontoRefFor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="54" y="16" width="79" height="16" uuid="430a6bf2-2acb-4ec9-9232-bdedf08e3595"/>
+				<textFieldExpression><![CDATA[$F{cmpFonFor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="16" width="79" height="16" uuid="e24d0d76-d3a2-4aa0-b2f1-cc504cec2759"/>
+				<textFieldExpression><![CDATA[$F{cmpFaxFor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="294" y="16" width="345" height="16" uuid="73bf0478-469c-45be-8803-2b517799c443"/>
+				<textFieldExpression><![CDATA[$F{end}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="650" y="16" width="144" height="16" uuid="49245122-8123-4454-a3a7-b253cfe43f19"/>
+				<textFieldExpression><![CDATA[$F{cid}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="311" y="0" width="46" height="16" uuid="804334a6-0d2c-446b-b830-813bf49753a4"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P. Refe.:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="16" width="44" height="16" uuid="c18c99bd-57f7-45a8-b079-e985e223381e"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fone 1 :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="16" width="44" height="16" uuid="2982b749-d4d1-4796-b0f0-81cc1290310d"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fone 2:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="32" width="46" height="16" uuid="4c24f9fa-d6ce-4ebd-9a78-422e20743450"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[End R.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="56" y="32" width="255" height="16" uuid="758ba699-d5bf-4766-9627-3c6b1fc949a6"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{endr}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="315" y="32" width="42" height="16" uuid="c2ad35af-f0f7-4f61-a0ae-f5e6eb47e97a"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cid. R.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="357" y="32" width="104" height="16" uuid="07ed08eb-0e4b-42e6-a3de-929e1a4a24b7"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cidr}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="530" y="0" width="53" height="16" uuid="069990dd-4202-477b-a75c-fdd6c126b74c"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fone R.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="574" y="0" width="76" height="16" uuid="5330dbad-d077-48bd-a9c3-1eff99e790a6"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cmpFonRFor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="656" y="0" width="48" height="16" uuid="694a62a4-b9bd-4e67-a4d6-f4dd306cf048"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CNPJ:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="694" y="0" width="100" height="16" uuid="602ed98b-bcbe-4521-9196-05465ef75448"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cmpCnpjFor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="662" y="32" width="44" height="16" uuid="397d11e5-5c0b-4b3a-8fe8-b92e7c9e1601"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CGF:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="695" y="32" width="100" height="16" uuid="1be95e03-2a14-4804-b5ff-81b25fc69597"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cmpCgfFor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="68" width="93" height="16" uuid="ca7cb134-7664-4e14-a019-bde1fd1546a0"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[E-mail Comercial:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="97" y="68" width="276" height="16" uuid="9a4eee14-e2aa-4996-b3b6-dc835853c854"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cmpEmail}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="50" width="55" height="16" uuid="641036b2-c24c-454b-b4fc-8d316a9267e9"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Banco 1:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="54" y="50" width="100" height="16" uuid="4ce5ab04-622b-458e-818d-d367ee06af99"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cmpBancoFor1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="159" y="50" width="34" height="16" uuid="886e1147-8146-436b-9af9-a58a36bf293e"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ag 1:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="189" y="50" width="63" height="16" uuid="a7f0be51-a655-49c1-9cc1-ed180fdd1593"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cmpAgFor1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="257" y="50" width="51" height="16" uuid="a33b29b5-5cbf-493c-a2a3-536f72723e1a"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Conta 1:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="302" y="50" width="95" height="16" uuid="d2d2128a-25d3-4e19-b6c8-bfba7dbb843f"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cmpCCFor1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="408" y="50" width="55" height="16" uuid="916b7d2f-37f4-4ede-8e36-fe4d069327ed"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Banco 2:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="450" y="50" width="100" height="16" uuid="244b37f6-3840-4be3-adc0-0390e1a4f251"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cmpBancoFor2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="555" y="50" width="34" height="16" uuid="44940e60-e094-4a77-b069-5f7e46981f01"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ag 2:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="585" y="50" width="63" height="16" uuid="cf3c5f10-f353-46a1-9b21-ae71fdfdc5c0"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cmpAgFor2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="653" y="49" width="51" height="16" uuid="e3e11714-49ac-4093-989b-2c5c2a2a316b"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Conta 2:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="698" y="50" width="95" height="16" uuid="50d38bca-bf05-490b-b949-915b3eb36c4f"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cmpCCFor2}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="85" width="801" height="1" uuid="42131560-4481-4afd-9800-e048e3a15767"/>
+			</line>
+			<staticText>
+				<reportElement x="426" y="68" width="97" height="16" uuid="46356b5f-c7eb-4192-808d-29bc1067194f"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[E-mail Financeiro:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="515" y="68" width="276" height="16" uuid="08c22630-66d8-4b9b-9eca-bc462f1b4635"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cmpEmailFinanceiro}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="3" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="4" width="801" height="1" uuid="a87e8349-3a2c-4e05-a8f6-2e7cad34f47f"/>
+			</line>
+			<textField pattern="EEEEE&apos;,&apos; dd&apos; de&apos; MMMMM&apos; de&apos; yyyy">
+				<reportElement x="10" y="7" width="429" height="19" uuid="56be013e-156e-4495-9e9c-33f074d465e8"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="683" y="6" width="100" height="20" uuid="c1eb6656-3906-4022-ad8f-e33eb98ecb34"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
